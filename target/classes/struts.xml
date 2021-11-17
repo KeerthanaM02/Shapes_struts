@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="shapes" namespace="/api/getArea" extends="json-default">
+		<interceptors>
+			<interceptor-stack name="jsonStack">
+				<interceptor-ref name="defaultStack">
+					<param name="exception.logEnabled">true</param>
+					<param name="exception.logLevel">ERROR</param>
+					<param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+				</interceptor-ref>
+				<interceptor-ref name="json">
+					<param name="enableSMD">true</param>
+				</interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+
+		<action name="rectangle" class="com.shape.ShapesController" method="getArea">
+			<interceptor-ref name="jsonStack"></interceptor-ref>
+			<result type="json" />
+		</action>
+		<action name="triangle"  class="com.shape.ShapesController" method="triangle">
+			<interceptor-ref name="jsonStack"></interceptor-ref>
+			<result type="json" />
+		</action>
+		<action name="square"  class="com.shape.ShapesController" method="square">
+			<interceptor-ref name="jsonStack"></interceptor-ref>
+			<result type="json" />
+		</action>
+		<action name="circle"  class="com.shape.ShapesController" method="circle">
+			<interceptor-ref name="jsonStack"></interceptor-ref>
+			<result type="json" />
+		</action> 
+		
+	</package>
+
+</struts>
